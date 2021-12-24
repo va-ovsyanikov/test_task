@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <div class="wrapp">
+      <header>
+        <div class="header">
+          <div class="header_top">
+              <div class="header_top_content">
+                <div class="logo">
+                  <a href="/"><img src="./img/logo.jpg" alt="Название компании"></a>
+                  <div class="description">
+                    <h1>Название <br> компании</h1>
+                    <p>Самая клевая компания</p>
+                  </div>
+                
+                </div>
+                <div class="phone">
+                  <a href="tel:+7(499) 777-77-77">+7(499) 777-77-77</a>
+                  <a href="tel:+7(499) 777-77-77">+7(499) 777-77-77</a>
+                </div>
+              </div>
+              <div class="header_bottom">
+                <div class="header_bootom_content">
+                  <div class="header_form">
+                    <h3>Форма с кнопкой</h3>
+                    <div class="header_form_content">
+                      <form action="" method="post">
+                        <p>
+                          Оставь телефон и получи <br/>
+                          что-то офигенное
+                        </p>
+                          <input type="tel" name="phone_header" placeholder="Введите номер">
+                          <!-- <button type="submit">Отправить</button> -->
+
+                          <!-- временная кнопка и ссылка -->
+                         <button><a style="text-decoration:none; color:inherit" class="f_popup" href="#success" >Отправить</a></button>
+                        </form>
+                      </div>
+                    </div>
+                
+                </div>
+             
+              </div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <section>
+          <div class="slider">
+            <h2>Cлайдер</h2>
+            <div class="owl-carousel owl-theme">
+              <div class="item_carousel">
+                  <img src="./img/slide1.jpg" alt="" />
+              </div>
+              <div class="item_carousel">
+                  <img src="./img/slide2.jpg" alt="" />
+              </div>
+              <div class="item_carousel">
+                  <img src="./img/slide3.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="section_text">
+            <h2>Текстовый блок</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit sapiente nobis, repellendus quis inventore laboriosam praesentium similique reprehenderit, quod in vitae nemo, nam a laudantium doloribus. Temporibus voluptatum non exercitationem.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit sapiente nobis, repellendus quis inventore laboriosam praesentium similique reprehenderit, quod in vitae nemo, nam a laudantium doloribus. Temporibus voluptatum non exercitationem.
+        </p>
+          </div>
+        </section>
+        <section>
+          <div id="calculator" class="calculator">
+            <h2>Калькулятор</h2>
+            <div class="calculator_preview">
+              <div class="preview_item" v-for="item in data" :key="item.id">
+                <img :src="'/img/' + item.src + '.jpg'" alt="" />
+                <a :class="{active:item.isActive}" href="#" @click.prevent="select_preview(item)">{{item.title}}</a>
+              </div>
+            </div>
+            <div class="calculator_form">
+              <form action="/" method="post">
+                <div class="form_content">
+                  <div class="form_block_params">
+                    <div>
+                      <img :src="'/img/' + preview_src + '.jpg'" alt="alt" />
+                    </div>
+                    <div class="form_params">
+                      <div class="params_item">
+                        <span> ширина, см</span>
+                        <input type="text" name="width" value="120" />
+                      </div>
+                      <span>x</span>
+                      <div class="params_item">
+                        <span> высота, см</span>
+                        <input type="text" name="height" value="120" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form_block_select">
+                    <h3>{{preview_title}}</h3>
+                    <ol>
+                      <li>
+                        <h4>Критерий выбора</h4>
+                        <div class="customcb_main">
+                          <div class="customcb">
+                            <input type="checkbox" value="1" id="customcb1" name="" />
+                            <label class="inner" for="customcb1"></label>
+                            <label class="outer" for="customcb1">пункт выбора 1</label>
+                          </div>
+                          
+                          <div class="customcb">
+                            <input type="checkbox" value="1" id="customcb2" name="" />
+                            <label class="inner" for="customcb2"></label>
+                            <label class="outer" for="customcb2">пункт выбора 2</label>
+                          </div>
+                          
+                          <div class="customcb">
+                            <input type="checkbox" value="1" id="customcb3" name="" />
+                            <label class="inner" for="customcb3"></label>
+                            <label class="outer" for="customcb3">пункт выбора 3</label>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <h4>Выберите открывание створки</h4>
+                        <select  v-model="selected">
+                          <option disabled value="">Не открывается</option>
+                          <option
+                            v-for="option in options"
+                            :value="option.value"
+                          >
+                            {{ option.text }}
+                          </option>
+                        </select>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="form_bottom">
+                  <input type="tel" name="phone_calculator" placeholder="Введите номер" />
+                  <button type="submit">Рассчитать</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="footer">
+          <div class="footer_content">
+            <p>
+              Просто <br/> скромный футер
+            </p>
+          </div>
+     
+        </div>
+      </footer>
+    </div>
+    <!-- success форма -->
+    <div id="success" class="popup_success mfp-hide">
+      <div class="popup_success__content">
+        <h4>
+          Ваше сообщение <br />
+          отправлено!
+        </h4>
+        <p>В ближайшее время с вами свяжется наш менеджер</p>
+        <a href="/">На главную</a>
+      </div>
+    </div>
+    <script src="js/app.min.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
